@@ -1,13 +1,18 @@
 package api
 
 import (
-	"net/http"
-
 	"encoding/json"
 	"fmt"
 	"github.com/gorilla/mux"
 	"github.com/rakshitadmar/gwCfgServer/db"
+	"io/ioutil"
+	"net/http"
 )
+
+type Gw struct {
+	Ip  string `json:"ip"`
+	Mac string `json:"mac"`
+}
 
 func handleError(err error, message string, w http.ResponseWriter) {
 	w.WriteHeader(http.StatusInternalServerError)
@@ -53,9 +58,29 @@ func GetGateway(w http.ResponseWriter, req *http.Request) {
 
 // PostGateway saves an gateway (form data) into the database.
 func PostGateway(w http.ResponseWriter, req *http.Request) {
-	MAC := req.FormValue("mac")
-	IP := req.FormValue("ip")
 
+	// var data map[string]interface{}
+	// err := json.Unmarshal([]byte(req), &data)
+
+	var gw Gw
+
+	b, err := ioutil.ReadAll(req.Body)
+	defer req.Body.Close()
+	if err != nil {
+		http.Error(w, err.Error(), 500)
+		return
+	}
+
+	err = json.Unmarshal(b, &gw)
+	if err != nil {
+		http.Error(w, err.Error(), 500)
+		return
+	}
+
+	MAC := gw.Mac
+	fmt.Println(MAC)
+	IP := gw.Ip
+	fmt.Println(IP)
 	gateway := db.Gateway{MAC: MAC, IP: IP}
 
 	if err := db.Save(gateway); err != nil {
