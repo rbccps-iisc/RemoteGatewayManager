@@ -24,8 +24,11 @@
 
 ## HOWTO
 
-### Client Side
+### Key exchange
+1. Generate RSA keys in both manager server and remote device `ssh-keygen -t rsa`
+2. Store the public keys in `~/.ssh/authorized_keys` for both manager and remote. (Remote side, managers key is not necessary if login with password is preferred)
 
+### Client Side
 1. Rename primary interface name in clientSide/establish.sh, for e.g "eth0"
 2. "touch ip" in the working directory. This is where public ip addres is cached
 3. Use crontab -e to point to this script. Make it execute every hour or so. If ip remains same then a request won't be made
@@ -43,4 +46,4 @@
 
 1. Daemon to monitor change in pub ip and 
 2. Security imporvements
-
+3. Incorporate Ansible
