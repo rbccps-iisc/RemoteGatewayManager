@@ -14,6 +14,7 @@ import (
 type Gw struct {
 	Ip  string `json:"ip"`
 	Mac string `json:"mac"`
+	Username string `json:"username"`
 }
 
 type RespMsg struct {
@@ -97,7 +98,9 @@ func PostGateway(w http.ResponseWriter, req *http.Request) {
 	fmt.Println(MAC)
 	IP := gw.Ip
 	fmt.Println(IP)
-	gateway := db.Gateway{MAC: MAC, IP: IP}
+	Uname := gw.Username
+	fmt.Println(Uname)
+	gateway := db.Gateway{MAC: MAC, IP: IP, Port: freePort, Username: Uname}
 
 	if err := db.Save(gateway); err != nil {
 		handleError(err, "Failed to save data: %v", w)

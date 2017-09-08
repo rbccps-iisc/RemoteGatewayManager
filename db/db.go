@@ -10,6 +10,8 @@ import (
 type Gateway struct {
 	MAC string `json:"mac" bson:"_id,omitempty"`
 	IP  string `json:"ip"`
+	Port string `json:"port"`
+	Username string `json:"username"`
 }
 
 var db *mgo.Database
