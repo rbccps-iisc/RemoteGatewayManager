@@ -2,7 +2,7 @@
 # Remote Gateway Manager & Client
 
 
-![alt text](https://github.com/RakshitAdmar/gwCfgServer/blob/master/docs/RemoteGatewayManager.png "Architecture overview")
+<img align="center" width="531" height="186" src="https://github.com/RakshitAdmar/gwCfgServer/blob/master/docs/RemoteGatewayManager.png">
 
 
 ## What it does 
