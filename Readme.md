@@ -1,9 +1,9 @@
 
 # Remote Gateway Manager & Client
 
-
-<img align="center" width="531" height="186" src="https://github.com/RakshitAdmar/gwCfgServer/blob/master/docs/RemoteGatewayManager.png">
-
+<p align="center">
+<width="531" height="186" src="https://github.com/RakshitAdmar/gwCfgServer/blob/master/docs/RemoteGatewayManager.png">
+</p>
 
 ## What it does 
 1. Remote device  requests a gateway manager for an open port and registers it's public ip and mac address. 
