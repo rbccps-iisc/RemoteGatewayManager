@@ -7,12 +7,20 @@ import (
 	"github.com/rakshitadmar/gwCfgServer/db"
 	"io/ioutil"
 	"net/http"
+	"net"
+	"regexp"
 )
 
 type Gw struct {
 	Ip  string `json:"ip"`
 	Mac string `json:"mac"`
 }
+
+type RespMsg struct {
+	Port string `json:"port"`
+
+}
+
 
 func handleError(err error, message string, w http.ResponseWriter) {
 	w.WriteHeader(http.StatusInternalServerError)
@@ -64,6 +72,14 @@ func PostGateway(w http.ResponseWriter, req *http.Request) {
 
 	var gw Gw
 
+	rexp, _ := regexp.Compile("[\\d]+")
+
+	iface,_ := net.Listen("tcp",":0")
+	defer iface.Close()
+	port := rexp.FindString(iface.Addr().String())
+	
+	fmt.Println(port)
+
 	b, err := ioutil.ReadAll(req.Body)
 	defer req.Body.Close()
 	if err != nil {
@@ -87,8 +103,10 @@ func PostGateway(w http.ResponseWriter, req *http.Request) {
 		handleError(err, "Failed to save data: %v", w)
 		return
 	}
-
-	w.Write([]byte("OK"))
+	
+	respm := &RespMsg{Port:port}
+	b,_:=json.Marshal(respm)
+	w.Write(b)
 }
 
 // DeleteGateway removes a single gateway (identified by parameter) from the database.
