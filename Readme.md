@@ -9,16 +9,22 @@
 1. Remote device  requests a gateway manager for an open port and registers it's public ip and mac address. 
 2. Upon receipt of a free port on the manager server, remote device creates an autossh pipe which the manager can use to reverse ssh to the remote.
 
-## Steps:-
+---
 
-### Client Side
-
-#### Bash Dependedncies 
+## Client Bash Dependedncies 
 1. jq
 2. curl
 3. autossh
 
+## Server Dependencies 
+1. MongoDB
+2. GOlang
 
+---
+
+## HOWTO
+
+### Client Side
 
 1. Rename primary interface name in clientSide/establish.sh, for e.g "eth0"
 2. "touch ip" in the working directory. This is where public ip addres is cached
@@ -26,11 +32,6 @@
 
 
 ### Server Side
-
-#### Dependencies 
-1. MongoDB
-2. GOlang
-
 
 1. Make sure go is set and go env points to correct GOPATH, etc.
 2. Change the listening port in `main.go`
