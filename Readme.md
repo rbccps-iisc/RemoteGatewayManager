@@ -2,8 +2,7 @@
 # Remote Gateway Manager & Client
 
 
-Inline-style: 
-![alt text](https://github.com/RakshitAdmar/gwCfgServer/blob/master/docs/RemoteGatewayManager.png "Architecture overvie")
+![alt text](https://github.com/RakshitAdmar/gwCfgServer/blob/master/docs/RemoteGatewayManager.png "Architecture overview")
 
 
 ## What it does 
@@ -15,28 +14,22 @@ Inline-style:
 ### Client Side
 
 #### Bash Dependedncies 
+1. jq
+2. curl
+3. autossh
 
-..* jq
-
-..* curl
-
-..* autossh
-
----
 
 
 1. Rename primary interface name in clientSide/establish.sh, for e.g "eth0"
 2. "touch ip" in the working directory. This is where public ip addres is cached
 3. Use crontab -e to point to this script. Make it execute every hour or so. If ip remains same then a request won't be made
 
----
 
 ### Server Side
 
 #### Dependencies 
-
-..* MongoDB
-..* GOlang
+1. MongoDB
+2. GOlang
 
 
 1. Make sure go is set and go env points to correct GOPATH, etc.
