@@ -71,14 +71,14 @@ func PostGateway(w http.ResponseWriter, req *http.Request) {
 	// err := json.Unmarshal([]byte(req), &data)
 
 	var gw Gw
-
+	
 	rexp, _ := regexp.Compile("[\\d]+")
 
 	iface,_ := net.Listen("tcp",":0")
 	defer iface.Close()
-	port := rexp.FindString(iface.Addr().String())
+	freePort := rexp.FindString(iface.Addr().String())
 	
-	fmt.Println(port)
+	fmt.Println(freePort)
 
 	b, err := ioutil.ReadAll(req.Body)
 	defer req.Body.Close()
@@ -104,9 +104,9 @@ func PostGateway(w http.ResponseWriter, req *http.Request) {
 		return
 	}
 	
-	respm := &RespMsg{Port:port}
-	b,_:=json.Marshal(respm)
-	w.Write(b)
+	respm := RespMsg{Port:freePort}
+	responseBody,_ := json.Marshal(respm)
+	w.Write(responseBody)
 }
 
 // DeleteGateway removes a single gateway (identified by parameter) from the database.
