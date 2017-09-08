@@ -1,0 +1,6 @@
+
+Dependedncies :-
+jq
+curl
+
+Use crontab -e to point to this script
