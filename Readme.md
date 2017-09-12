@@ -29,9 +29,10 @@
 2. Store the public keys in `~/.ssh/authorized_keys` for both manager and remote. (Remote side, managers key is not necessary if login with password is preferred)
 
 ### Client Side
-1. Rename primary interface name in clientSide/establish.sh, for e.g "eth0"
-2. "touch ip" in the working directory. This is where public ip addres is cached
-3. Use crontab -e to point to this script. Make it execute every hour or so. If ip remains same then a request won't be made
+1. Store the folder cleintSide and give it user permssions
+2. Rename primary interface name in clientSide/establish.sh, for e.g "eth0"
+3. "touch ip" in the working directory. This is where public ip addres is cached
+4. Use crontab -e to point to this script. Make it execute every hour or so. If ip remains same then a request won't be made
 
 
 ### Server Side
