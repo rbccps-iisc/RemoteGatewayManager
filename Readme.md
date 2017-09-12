@@ -14,7 +14,7 @@
 ## Client Bash Dependedncies 
 1. jq
 2. curl
-3. autossh
+3. wget
 
 ## Server Dependencies 
 1. MongoDB
@@ -47,3 +47,4 @@
 1. Daemon to monitor change in pub ip and 
 2. Security imporvements
 3. Incorporate Ansible
+3. Daemon to monitor SSH tunnel
