@@ -3,6 +3,15 @@
 
 oldIp=`cat ip`
 iface='eth0'
+
+
+status=`./check_internet.sh`
+while [ "$status" != "Online" ]
+do 
+sleep 5
+status=`./check_internet.sh`
+done 
+
 newIp=`curl -s ipinfo.io/ip`
 
 if [ "$newIp" != "$oldIp" ]; then 
@@ -12,8 +21,8 @@ if [ "$newIp" != "$oldIp" ]; then
 	uname=`whoami`
 	cmd='{"ip":"'$newIp'","mac":"'$mac'","username":"'$uname'"}'
 	freePort=`curl -s --request POST --url http://139.59.88.117:3000/api/register --header 'content-type: application/json' --data $cmd | jq -r '.port'  `
+	`echo "$freePort" > port`
 	echo "Connection to Manage at port $freePort established"
-	autossh -M 20000 -N -f -R $freePort:localhost:22 manager@139.59.88.117 &
-
+	ssh -N -R $freePort:localhost:22 manager@139.59.88.117 &
 fi;
 
