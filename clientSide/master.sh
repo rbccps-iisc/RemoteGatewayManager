@@ -1,9 +1,9 @@
 
 #!/bin/bash
 
-workingDir="/home/rxhf/clientSide"
-managerURL="manager@139.59.88.117"
-apiURL="http://139.59.88.117:3000/api/register"
+workingDir="/home/username/clientSide"
+managerURL="manager@123.123.123.123"
+apiURL="http://123.123.123.123:3000/api/register"
 
 freePort=`cat port`
 COMMAND="ssh -N -o ExitOnForwardFailure=yes -R $freePort:localhost:22 $managerURL"

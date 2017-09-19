@@ -13,8 +13,7 @@
 
 ## Client Bash Dependedncies 
 1. jq
-2. curl
-3. wget
+2. wget
 
 ## Server Dependencies 
 1. MongoDB
@@ -30,11 +29,11 @@
 
 ### Client Side
 1. Store the folder cleintSide and give it user permssions
-2. Rename primary interface name in clientSide/establish.sh, for e.g "eth0"
-3. "touch ip" in the working directory. This is where public ip addres is cached
+2. Rename primary interface name in clientSide/master.sh, for e.g "eth0"
+3. "touch ip" & "touch port" in the working directory. This is where public ip addres is cached
 4. Use crontab -e to point to this script. Make it execute every hour or so. If ip remains same then a request won't be made
    An example of cronjob is as follows
-	> @reboot su username -c 'sh /home/username/clientSide/establish.sh' >> /home/username/clientSide/logs/cronlog 2>&1
+	> @reboot su username -c 'sh /home/username/clientSide/master.sh' >> /home/username/clientSide/logs/cronlog 2>&1
 
 
 ### Server Side
