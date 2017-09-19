@@ -4,7 +4,7 @@ import (
 	"net/http"
 
 	"github.com/gorilla/mux"
-	"github.com/rakshitadmar/gwCfgServer/api"
+	"github.com/rraks/RemoteGatewayManager/api"
 )
 
 func main() {

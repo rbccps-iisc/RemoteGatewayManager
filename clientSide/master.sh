@@ -8,7 +8,7 @@ apiURL="http://139.59.88.117:3000/api/register"
 freePort=`cat port`
 COMMAND="ssh -N -o ExitOnForwardFailure=yes -R $freePort:localhost:22 $managerURL"
 currentIp=`cat ip`
-iface='eth0'
+iface='enp1s0'
 mac=`cat /sys/class/net/$iface/address`
 uname=`whoami`
 

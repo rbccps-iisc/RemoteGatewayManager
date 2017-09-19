@@ -8,9 +8,9 @@ import (
 )
 
 type Gateway struct {
-	MAC string `json:"mac" bson:"_id,omitempty"`
-	IP  string `json:"ip"`
-	Port string `json:"port"`
+	MAC      string `json:"mac" bson:"_id,omitempty"`
+	IP       string `json:"ip"`
+	Port     string `json:"port"`
 	Username string `json:"username"`
 }
 
@@ -52,8 +52,8 @@ func GetOne(id string) (*Gateway, error) {
 }
 
 // Save inserts an gateway to the database.
-func Save(gw Gateway) error {
-	return collection().Insert(gw)
+func Save(gw Gateway) (*mgo.ChangeInfo, error) {
+	return collection().UpsertId(gw.MAC, gw)
 }
 
 // Remove deletes an gateway from the database

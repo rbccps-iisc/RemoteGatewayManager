@@ -4,24 +4,22 @@ import (
 	"encoding/json"
 	"fmt"
 	"github.com/gorilla/mux"
-	"github.com/rakshitadmar/gwCfgServer/db"
+	"github.com/rraks/RemoteGatewayManager/db"
 	"io/ioutil"
-	"net/http"
 	"net"
+	"net/http"
 	"regexp"
 )
 
 type Gw struct {
-	Ip  string `json:"ip"`
-	Mac string `json:"mac"`
+	Ip       string `json:"ip"`
+	Mac      string `json:"mac"`
 	Username string `json:"username"`
 }
 
 type RespMsg struct {
 	Port string `json:"port"`
-
 }
-
 
 func handleError(err error, message string, w http.ResponseWriter) {
 	w.WriteHeader(http.StatusInternalServerError)
@@ -72,13 +70,13 @@ func PostGateway(w http.ResponseWriter, req *http.Request) {
 	// err := json.Unmarshal([]byte(req), &data)
 
 	var gw Gw
-	
+
 	rexp, _ := regexp.Compile("[\\d]+")
 
-	iface,_ := net.Listen("tcp",":0")
+	iface, _ := net.Listen("tcp", ":0")
 	defer iface.Close()
 	freePort := rexp.FindString(iface.Addr().String())
-	
+
 	fmt.Println(freePort)
 
 	b, err := ioutil.ReadAll(req.Body)
@@ -102,13 +100,13 @@ func PostGateway(w http.ResponseWriter, req *http.Request) {
 	fmt.Println(Uname)
 	gateway := db.Gateway{MAC: MAC, IP: IP, Port: freePort, Username: Uname}
 
-	if err := db.Save(gateway); err != nil {
+	if _, err := db.Save(gateway); err != nil {
 		handleError(err, "Failed to save data: %v", w)
 		return
 	}
-	
-	respm := RespMsg{Port:freePort}
-	responseBody,_ := json.Marshal(respm)
+
+	respm := RespMsg{Port: freePort}
+	responseBody, _ := json.Marshal(respm)
 	w.Write(responseBody)
 }
 
