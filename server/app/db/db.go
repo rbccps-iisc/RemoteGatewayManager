@@ -16,13 +16,15 @@ type Gateway struct {
 
 var db *mgo.Database
 
-func init() {
-	session, err := mgo.Dial("mongodb://localhost:27017")
+func Init(uri string, dbname string) error {
+	session, err := mgo.Dial(uri)
 	if err != nil {
 		log.Fatalf("Failed to connect to database: %v", err)
 	}
 
-	db = session.DB("api_db")
+	db = session.DB(dbname)
+
+	return nil
 }
 
 func collection() *mgo.Collection {

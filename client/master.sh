@@ -1,19 +1,19 @@
 
 #!/bin/bash
 
-workingDir="/home/username/clientSide"
-managerURL="manager@123.123.123.123"
-apiURL="http://123.123.123.123:3000/api/register"
+workingDir="/home/rxhf/sshtunnel"
+managerURL="manager@139.59.88.117"
+apiURL="http://127.0.0.1:9000/register"
 
-freePort=`cat port`
-COMMAND="ssh -N -o ExitOnForwardFailure=yes -R $freePort:localhost:22 $managerURL"
-currentIp=`cat ip`
+freePort=`cat $workingDir/port`
+currentIp=`cat $workingDir/ip`
 iface='enp1s0'
-mac=`cat /sys/class/net/$iface/address`
+mac=123.123.456.678 #`cat /sys/class/net/$iface/address`
 uname=`whoami`
 
 check_ssh()
-{
+{	
+	COMMAND="ssh -N -o ExitOnForwardFailure=yes -R $freePort:localhost:22 $managerURL"
 	if ssh -t $managerURL netcat -z -v -w 10  localhost $freePort | grep -q "succeeded"
 	then
         	echo 0
@@ -28,6 +28,7 @@ check_ssh()
 establish_ssh()
 {
 
+	COMMAND="ssh -N -o ExitOnForwardFailure=yes -R $freePort:localhost:22 $managerURL"
 	ssh -N -o ExitOnForwardFailure=yes -R $freePort:localhost:22 manager@139.59.88.117 &
 	check_ssh
 	
@@ -42,7 +43,16 @@ establish_ssh()
 
 
 #Check if device is online
-wget --tries=10 -q --spider http://google.com
+sudo wget --tries=10 -q --spider http://google.com
+count=1
+while [ $? -ne 0 ] || [ $count -eq 5 ]
+do
+	((count++))
+	sudo wget --tries=10 -q --spider http://google.com
+	
+done
+
+
 if [ $? -eq 0 ]
 then
 
@@ -54,10 +64,10 @@ then
 	if [ "$newIp" != "$oldIp" ]
 	then
 		echo "IP Changed"
-		`echo "$newIp" > ip`
+		echo "$newIp" > $workingDir/ip
 		cmd='{"ip":"'$newIp'","mac":"'$mac'","username":"'$uname'"}'
-		freePort=`curl -s --request POST --url $apiURL --header 'content-type: application/json' --data $cmd | jq -r '.port'  `
-		`echo "$freePort" > port`
+		freePort=`curl -s --header 'content-type: application/json' -X  POST  -d $cmd $apiURL | jq -r '.port'  `
+		echo "$freePort" > $workingDir/port
 		pkill -f "ssh -N -o ExitOnForwardFailure=yes -R"
 		establish_ssh
 		if [ $? -eq 0 ]
@@ -68,7 +78,7 @@ then
 		fi
 	fi
 
-
+	COMMAND="ssh -N -o ExitOnForwardFailure=yes -R $freePort:localhost:22 $managerURL"
 	if pgrep -f -x "$COMMAND" > /dev/null 
 	then
 		check_ssh

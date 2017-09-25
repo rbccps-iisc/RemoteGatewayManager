@@ -1,0 +1,4 @@
+#@reboot  sleep 200 && cd /home/rxhf/loraNet/packet_forwarder/lora_pkt_fwd/ && ./lora_pkt_fwd > /home/rxhf/logs/cronlog 2>&1
+@reboot sleep 60 && su rxhf -c 'sh /home/rxhf/sshtunnel/master.sh' >> /home/rxhf/sshtunnel/logs/cronlog 2>&1
+*/30 * * * * sudo -u rxhf /home/rxhf/sshtunnel/master.sh >> /home/rxhf/sshtunnel/logs/cronlog 2>&1
+

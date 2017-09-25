@@ -1,0 +1,30 @@
+<table class="table">
+
+<tr>
+	<th>MAC ID</th>
+	<th>Public IP Address</th>
+	<th>Username</th>
+	<th>Port</th>
+	<th>SSH</th>
+</tr>
+	
+{{range .gws}} 
+
+	<tr>
+		<td>{{.MAC}}</td> 
+		<td>{{.IP}}</td> 
+		<td>{{.Username}}</td> 
+		<td>{{.Port}}</td> 
+		<td><button type="button"  onclick="launch(username, port);">Launch</button></td>
+
+	</tr> 
+
+{{end}}</table>
+
+
+
+<script>
+function launch (string user, string port) {
+    "gnome-terminal -e  \"ssh -t manager@139.59.88.117 ssh " + user + "@localhost" + "-p " + port + "\""
+}
+</script>
