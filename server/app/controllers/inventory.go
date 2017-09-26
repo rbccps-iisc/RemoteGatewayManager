@@ -6,7 +6,7 @@ import (
 	"github.com/revel/revel"
 	"github.com/rraks/RemoteGatewayManager/server/app/db"
 
-	"os/exec"
+	//"os/exec"
 
 	"net"
 
@@ -35,14 +35,14 @@ func (c Inventory) Gateways() revel.Result {
 	return c.Render(gws)
 }
 
-func (c Inventory) Launch() revel.Result {
+// func (c Inventory) Launch() revel.Result {
 
-	var gw db.Gateway
-	user := c.Params.Query.Get("user")
-	port := c.Params.Query.Get("port")
-	cmd := "gnome-terminal -e  \"ssh -t manager@139.59.88.117 ssh " + user + "@localhost" + "-p " + port + "\""
+// 	var gw db.Gateway
+// 	user := c.Params.Query.Get("user")
+// 	port := c.Params.Query.Get("port")
+// 	//cmd := "gnome-terminal -e  \"ssh -t manager@139.59.88.117 ssh " + user + "@localhost" + "-p " + port + "\""
 
-}
+// }
 
 // PostGateway saves an gateway (form data) into the database.
 func (c Inventory) Register() revel.Result {

@@ -1,0 +1,24 @@
+#!/bin/bash
+
+cwd="/home/rxhf/risinghf/me909/"
+OUTPUT_TERM=/tmp/lte.log
+CFG=/home/rxhf/risinghf/me909/dial.conf
+ifacePath=/sys/class/net/ppp0
+if [ -d $ifacePath ]
+then
+	echo 0
+    exit
+else
+	
+	killall ltectl 2> /dev/null 
+	killall wvdial 2> /dev/null 
+	/usr/local/sbin/ltectl off > /dev/null 
+	/usr/local/sbin/ltectl on > /dev/null 
+	sleep 5
+	nohup wvdial -C $CFG  >$cwd/nohup.out 2>&1 &
+	if  tail -f $cwd/nohup.out | grep --line-buffered -q "Starting PPP immediately"  
+		then 
+			sleep 5.5
+			echo 0
+	fi
+fi

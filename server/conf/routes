@@ -9,7 +9,7 @@ module:testrunner
 
 GET     /                                       Inventory.Gateways
 POST 	/register/								Inventory.Register
-GET 	/launch/								Inventory.Launch
+
 
 
 

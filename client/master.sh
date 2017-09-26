@@ -1,14 +1,15 @@
 
 #!/bin/bash
 
-workingDir="/home/rxhf/sshtunnel"
-managerURL="manager@139.59.88.117"
-apiURL="http://127.0.0.1:9000/register"
+workingDir="/home/uname/sshtunnel"
+managerURL="manager@100.100.100.100"
+apiURL="http://100.100.100.100:9000/register"
 
 freePort=`cat $workingDir/port`
 currentIp=`cat $workingDir/ip`
-iface='enp1s0'
-mac=123.123.456.678 #`cat /sys/class/net/$iface/address`
+iface='eth0'
+4GDialScript=$workingDir/dial
+mac=`cat /sys/class/net/$iface/address`
 uname=`whoami`
 
 check_ssh()
@@ -34,7 +35,7 @@ establish_ssh()
 	
 	if [ $? -eq 0 ]
 	then
-		echo 0
+check if varshel 		echo 0
 	else
 		echo 1
 	fi
@@ -42,12 +43,26 @@ establish_ssh()
 }
 
 
+#Check if interface is up else, turn it on
+#Link to 4G Dial script or 
+if [ -z $4GDialScript ]
+then
+$4GDialScript
+while [ $? -ne 0 ]
+do
+sleep 100
+sudo killall dial
+$4GDialScript
+done
+fi
+
 #Check if device is online
-sudo wget --tries=10 -q --spider http://google.com
+sudo wget  -q --spider http://google.com
 count=1
-while [ $? -ne 0 ] || [ $count -eq 5 ]
+while [ $? -ne 0 ] && [ $count -lt 5 ]
 do
 	((count++))
+	sleep 5
 	sudo wget --tries=10 -q --spider http://google.com
 	
 done
