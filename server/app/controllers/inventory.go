@@ -6,9 +6,10 @@ import (
 	"github.com/revel/revel"
 	"github.com/rraks/RemoteGatewayManager/server/app/db"
 
-	//"os/exec"
-
+	//"log"
 	"net"
+	//"os"
+	//"os/exec"
 
 	"regexp"
 )
@@ -81,5 +82,24 @@ func (c Inventory) Register() revel.Result {
 
 	respm := RespMsg{Port: freePort}
 	//responseBody, _ := json.Marshal(respm)
+
 	return c.RenderJSON(respm)
+
+}
+
+func (c Inventory) Launch() revel.Result {
+
+	var asked_gw *db.Gateway
+
+	macid := c.Params.Form.Get("mac")
+
+	asked_gw, _ = db.GetOne(macid)
+	fmt.Println(asked_gw.IP)
+	// cmd := exec.Command("./launch_ssh", "-u", asked_gw.Username, "-p", asked_gw.Port)
+	// cmd.Stdout = os.Stdout
+	// err := cmd.Start()
+	// if err != nil {
+	// 	log.Fatal(err)
+	// }
+	return nil
 }

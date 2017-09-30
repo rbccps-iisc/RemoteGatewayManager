@@ -34,6 +34,8 @@
 4. Use crontab -e to point to this script. Make it execute every hour or so. If ip remains same then a request won't be made
    An example of cronjob is as follows
 	> @reboot su username -c 'sh /home/username/clientSide/master.sh' >> /home/username/clientSide/logs/cronlog 2>&1
+5. Ensure that the parameters `ServerAliveInterval 60` and `ServerAliveCountMax 10` in file `/etc/ssh/ssh_config are set on the client side are present, to ensure persistent tunnel
+
 
 
 ### Server Side
@@ -43,6 +45,7 @@
 3. Change mongodb credenials, database, etc and `db/db.go`
 4. Clone repo and run `go install . `
 5. Run the binaries from wherever they are generated to. 
+6. Ensure that the parameters `ClientAliveInterval 60` and `ClientAliveCountMax 10` in file `/etc/ssh/sshd_config are set on the client side are present, to ensure persistent tunnel
 
 ## TODO :
 

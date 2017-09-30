@@ -1,0 +1,55 @@
+{{set . "title" "Home"}}
+{{template "header.html" .}}
+
+<header class="jumbotron" style="background-color:#FFFFFF">
+  <div class="container">
+    <div class="row">
+      <img src="/public/img/rbccps.png" width="70%" height="70%" align="middle" >
+      <br>
+      
+      
+       <p></p>
+       
+
+       <div class="col-sm-6 col-sm-offset-3">
+<div class="container">
+  <div class="row">
+    <div class="span6">
+      <form action="/auth" method="POST">
+ 
+
+      <div class="row">
+    <label><b>Username</b></label>
+    <input type="text"  name="username" required>
+  </div>
+
+  <div class="row">
+    <label><b>Password</b></label>
+    <input type="password"  name="password" required>
+</div>
+
+<div class="row">
+    <button type="submit">Login</button>
+    <input type="checkbox" checked="checked"> Remember me
+  
+  
+</form>
+
+     </div>
+  </div>
+</div>
+ 
+    </div>
+  </div> 
+</header>
+
+<div class="container">
+  <div class="row">
+    <div class="span6">
+      {{template "flash.html" .}}
+     </div>
+  </div>
+</div>
+
+{{template "footer.html" .}}
+

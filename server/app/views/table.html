@@ -15,16 +15,32 @@
 		<td>{{.IP}}</td> 
 		<td>{{.Username}}</td> 
 		<td>{{.Port}}</td> 
-		<td><button type="button"  onclick="launch(username, port);">Launch</button></td>
+		<td><button type="button" id={{.MAC}}>Launch</button></td>
 
 	</tr> 
 
 {{end}}</table>
 
 
+<script type="text/javascript">
+    $(document).ready(function(){
+        $("button").click(function(){
+			var id = $("button").attr("id");
+			
+            $.ajax({
+                "type": 'POST',
+                "url": '/launch',
+                 "data": {
+    				"mac": id
+  				},
+				"content-type": "application/x-www-form-urlencoded",
+                success: function(data) {
+                	console.log("Successfully Sennt")
+                    alert(data);
+                    $("p").text(data);
 
-<script>
-function launch (string user, string port) {
-    "gnome-terminal -e  \"ssh -t manager@139.59.88.117 ssh " + user + "@localhost" + "-p " + port + "\""
-}
+                }
+            });
+   });
+});
 </script>

@@ -7,10 +7,11 @@ module:testrunner
 # module:jobs
 
 
-GET     /                                       Inventory.Gateways
+GET     /gateways                               Inventory.Gateways
+GET		/										App.Login
 POST 	/register/								Inventory.Register
-
-
+POST 	/auth									App.Auth
+POST    /launch									Inventory.Launch
 
 
 # Ignore favicon requests
