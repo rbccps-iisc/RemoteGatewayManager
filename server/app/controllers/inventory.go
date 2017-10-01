@@ -6,10 +6,10 @@ import (
 	"github.com/revel/revel"
 	"github.com/rraks/RemoteGatewayManager/server/app/db"
 
-	//"log"
+	"log"
 	"net"
-	//"os"
-	//"os/exec"
+	"os"
+	"os/exec"
 
 	"regexp"
 )
@@ -95,11 +95,14 @@ func (c Inventory) Launch() revel.Result {
 
 	asked_gw, _ = db.GetOne(macid)
 	fmt.Println(asked_gw.IP)
-	// cmd := exec.Command("./launch_ssh", "-u", asked_gw.Username, "-p", asked_gw.Port)
-	// cmd.Stdout = os.Stdout
-	// err := cmd.Start()
-	// if err != nil {
-	// 	log.Fatal(err)
-	// }
+	_ = exec.Command("fuser -k 8080/tcp")
+	_ = exec.Command("killall gotty")
+	_ = exec.Command("killall tmux")
+	cmd := exec.Command("/home/thepro/go/src/github.com/rraks/RemoteGatewayManager/server/launch_ssh.sh", "-u", asked_gw.Username, "-p", asked_gw.Port)
+	cmd.Stdout = os.Stdout
+	err := cmd.Start()
+	if err != nil {
+		log.Fatal(err)
+	}
 	return nil
 }
