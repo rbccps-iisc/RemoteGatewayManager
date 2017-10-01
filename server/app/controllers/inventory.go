@@ -36,14 +36,6 @@ func (c Inventory) Gateways() revel.Result {
 	return c.Render(gws)
 }
 
-// func (c Inventory) Launch() revel.Result {
-
-// 	var gw db.Gateway
-// 	user := c.Params.Query.Get("user")
-// 	port := c.Params.Query.Get("port")
-// 	//cmd := "gnome-terminal -e  \"ssh -t manager@139.59.88.117 ssh " + user + "@localhost" + "-p " + port + "\""
-
-// }
 
 // PostGateway saves an gateway (form data) into the database.
 func (c Inventory) Register() revel.Result {
@@ -94,15 +86,12 @@ func (c Inventory) Launch() revel.Result {
 	macid := c.Params.Form.Get("mac")
 
 	asked_gw, _ = db.GetOne(macid)
-	fmt.Println(asked_gw.IP)
-	_ = exec.Command("fuser -k 8080/tcp")
-	_ = exec.Command("killall gotty")
-	_ = exec.Command("killall tmux")
-	cmd := exec.Command("/home/thepro/go/src/github.com/rraks/RemoteGatewayManager/server/launch_ssh.sh", "-u", asked_gw.Username, "-p", asked_gw.Port)
+	cmd := exec.Command("/home/manager/go/src/github.com/rraks/RemoteGatewayManager/server/launch_ssh.sh", "-u", asked_gw.Username, "-p", asked_gw.Port)
 	cmd.Stdout = os.Stdout
 	err := cmd.Start()
 	if err != nil {
 		log.Fatal(err)
+	c.Flash.Error("Failed To Launch Session") 	
 	}
-	return nil
+	return c.RenderText("http://139.59.88.117:9741")
 }

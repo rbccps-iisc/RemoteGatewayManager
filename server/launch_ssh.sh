@@ -21,9 +21,11 @@ done
 shift $((OPTIND-1))
 
 
-echo "u = ${u}"
-echo "p = ${p}"
 
+tmux kill-session -t ${p}
+killall gotty
+killall tmux
+fuser -k 8080/tcp
 
-nohup gotty -w tmux new-session -s ${p} ssh manager@139.59.88.117 ssh ${u}@localhost -p ${p} &
+nohup gotty  -w tmux new-session -s ${p}  ssh ${u}@localhost -p ${p} &
 
