@@ -36,8 +36,10 @@ func (c App) Auth() revel.Result {
 			c.Session["password"] = string(hash)
 		}
 		return c.Redirect(Inventory.Gateways)
+
 	} else {
 		c.Flash.Error("Login Failed")
+
 		return c.Redirect(App.Login)
 	}
 

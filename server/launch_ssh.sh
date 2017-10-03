@@ -24,7 +24,6 @@ shift $((OPTIND-1))
 
 tmux kill-session -t ${p}
 killall gotty
-killall tmux
 fuser -k 8080/tcp
 
 nohup gotty  -w tmux new-session -s ${p}  ssh ${u}@localhost -p ${p} &

@@ -3,7 +3,7 @@
 
 workingDir="/home/rxhf/sshtunnel"
 managerURL="manager@139.59.88.117"
-apiURL="http://139.59.88.117:9000/register"
+apiURL="http://139.59.88.117:9001/register"
 
 DialScript4G="/home/rxhf/risinghf/me909/dial"
 freePort=`cat $workingDir/port`
@@ -19,7 +19,6 @@ check_ssh()
 	then
         	echo 0
 	else
-		echo "Tunnel not established"
 		echo 1
 	fi
 }
@@ -64,14 +63,16 @@ then
 
 	oldIp=`cat $workingDir/ip`
 	newIp=`wget ipinfo.io/ip -O - -q`
-	oldIp=`cat $workingDir/ip`
-
-	if [ "$newIp" != "$oldIp" ]
+	COMMAND="ssh -N -o ExitOnForwardFailure=yes -R $freePort:localhost:22 $managerURL"
+	
+	pgrep -f -x "$COMMAND"
+	if [ $? -ne 0 ] || [ "$newIp" != "$oldIp" ]
 	then
-		echo "IP Changed"
+		
+		echo "ESTABLISHING"		
 		echo "$newIp" > $workingDir/ip
 		cmd='{"ip":"'$newIp'","mac":"'$mac'","username":"'$uname'"}'
-		freePort=`curl -s --header 'content-type: application/json' -X  POST  -d $cmd $apiURL | jq -r '.port'  `
+		freePort=`curl -s --header 'content-type: application/json' -X  POST  -d $cmd $apiURL | jq -r '.port'`
 		echo "$freePort" > $workingDir/port
 		pkill -f "ssh -N -o ExitOnForwardFailure=yes -R"
 		establish_ssh
@@ -81,11 +82,8 @@ then
 	        else
 			exit 1
 		fi
-	fi
-
-	COMMAND="ssh -N -o ExitOnForwardFailure=yes -R $freePort:localhost:22 $managerURL"
-	if pgrep -f -x "$COMMAND" > /dev/null 
-	then
+	
+	else 
 		check_ssh
 		if [ $? -eq 0 ] 
 		then	
@@ -102,16 +100,7 @@ then
 				exit 1
 			fi
 		fi
-
-	else 
-		echo "SSH NOT ESTABLISHED"
-		establish_ssh
-		if [ $? -eq 0 ]
-	        then
-	            exit 0
-	        else
-				exit 1
-		fi
+		
 	fi
 
 

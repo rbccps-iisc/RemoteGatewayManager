@@ -36,7 +36,6 @@ func (c Inventory) Gateways() revel.Result {
 	return c.Render(gws)
 }
 
-
 // PostGateway saves an gateway (form data) into the database.
 func (c Inventory) Register() revel.Result {
 
@@ -91,7 +90,7 @@ func (c Inventory) Launch() revel.Result {
 	err := cmd.Start()
 	if err != nil {
 		log.Fatal(err)
-	c.Flash.Error("Failed To Launch Session") 	
+		c.Flash.Error("Failed To Launch Session")
 	}
 	return c.RenderText("http://139.59.88.117:9741")
 }

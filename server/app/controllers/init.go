@@ -15,21 +15,20 @@ var user UserCred
 // simple example or user auth
 func checkSession(c *revel.Controller) revel.Result {
 
-	usr := c.Session["username"]
-	pwd := c.Session["password"]
-
-	if usr == user.Username {
-
-		if err := bcrypt.CompareHashAndPassword([]byte(pwd), []byte(user.Password)); err != nil {
+	if c.Session["username"] == user.Username {
+		if err := bcrypt.CompareHashAndPassword([]byte(c.Session["password"]), []byte(user.Password)); err != nil {
 			c.Flash.Error("Login Failed")
 			return c.Redirect(App.Login)
 		} else {
 			return nil
 		}
 
+	} else if (c.Request.Header.Get("username") == user.Username) && (c.Request.Header.Get("password") == user.Password) {
+		return nil
 	} else {
 		c.Flash.Error("Login Failed")
 		return c.Redirect(App.Login)
+
 	}
 }
 
