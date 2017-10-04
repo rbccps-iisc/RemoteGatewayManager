@@ -3,7 +3,7 @@
 
 workingDir="/home/rxhf/sshtunnel"
 managerURL="manager@139.59.88.117"
-apiURL="http://139.59.88.117:9001/register"
+apiURL="https://139.59.88.117:9001/register"
 
 DialScript4G="/home/rxhf/risinghf/me909/dial"
 freePort=`cat $workingDir/port`
@@ -68,19 +68,23 @@ then
 	pgrep -f -x "$COMMAND"
 	if [ $? -ne 0 ] || [ "$newIp" != "$oldIp" ]
 	then
-		
-		echo "ESTABLISHING"		
 		echo "$newIp" > $workingDir/ip
-		cmd='{"ip":"'$newIp'","mac":"'$mac'","username":"'$uname'"}'
-		freePort=`curl -s --header 'content-type: application/json' -X  POST  -d $cmd $apiURL | jq -r '.port'`
-		echo "$freePort" > $workingDir/port
-		pkill -f "ssh -N -o ExitOnForwardFailure=yes -R"
-		establish_ssh
-		if [ $? -eq 0 ]
-	        then
-	        	exit 0
-	        else
-			exit 1
+		msg='{"ip":"'$newIp'","mac":"'$mac'","username":"'$uname'"}'
+		freePort=`curl -k -s --header 'content-type: application/json' -H 'username: admin' -H 'password: admin' -X  POST  -d $msg $apiURL  | jq -r '.port'`
+		if [ ! -z $freePort ]
+		then
+			echo "$freePort" > $workingDir/port
+			pkill -f "ssh -N -o ExitOnForwardFailure=yes -R"
+			establish_ssh
+			if [ $? -eq 0 ]
+			then
+				exit 0
+			else
+				exit 1
+			fi
+		else
+			echo "Response not received"
+			exit
 		fi
 	
 	else 
