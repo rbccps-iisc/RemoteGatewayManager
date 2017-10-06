@@ -1,0 +1,2 @@
+@reboot sleep 180 && /root/client/master.sh >> /root/client/logs/cronlog 2>&1
+*/10 * * * *  /root/client/master.sh >> /root/client/logs/cronlog 2>&1

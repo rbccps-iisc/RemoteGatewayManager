@@ -1,0 +1,4 @@
+@reboot sleep 30 &&  <dialscriptLocation>/dial
+@reboot sleep 180 && sudo -u <username> <clientFolderLocation>/master.sh >> <sshtunnelLocation>/logs/cronlog 2>&1
+*/10 * * * *  sudo -u <username> <clientFolderLocation>/master.sh >> <sshtunnelLocation>/logs/cronlog 2>&1
+*/5  * * * *  <dialscriptLocation>/dial >> <dialscriptLocation>/logs/cronlog 2>&1

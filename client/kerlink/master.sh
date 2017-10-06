@@ -1,11 +1,10 @@
 
 #!/bin/bash
 
-workingDir="/home/rxhf/sshtunnel"
+workingDir="/root/client"
 managerURL="manager@139.59.88.117"
 apiURL="https://139.59.88.117:9001/register"
 
-DialScript4G="/home/rxhf/risinghf/me909/dial"
 freePort=`cat $workingDir/port`
 currentIp=`cat $workingDir/ip`
 iface='eth0'
@@ -14,8 +13,8 @@ uname=`whoami`
 
 check_ssh()
 {	
-	COMMAND="ssh -N -o ExitOnForwardFailure=yes -R $freePort:localhost:22 $managerURL"
-	if ssh -t $managerURL netcat -z -v -w 10  localhost $freePort | grep -q "succeeded"
+	COMMAND="ssh -i /root/.ssh/id_rsa -N -R $freePort:localhost:22 $managerURL"
+	if ssh -i /root/.ssh/id_rsa -t $managerURL netcat -z -v -w 10  localhost $freePort | grep -q "succeeded"
 	then
         	echo 0
 	else
@@ -28,8 +27,8 @@ check_ssh()
 establish_ssh()
 {
 
-	COMMAND="ssh -N -o ExitOnForwardFailure=yes -R $freePort:localhost:22 $managerURL"
-	ssh -N -o ExitOnForwardFailure=yes -R $freePort:localhost:22 manager@139.59.88.117 &
+	COMMAND="ssh -i /root/.ssh/id_rsa -N -R $freePort:localhost:22 $managerURL"
+	ssh -i /root/.ssh/id_rsa -N -R $freePort:localhost:22 manager@139.59.88.117 &
 	check_ssh
 	
 	if [ $? -eq 0 ]
@@ -46,13 +45,13 @@ establish_ssh()
 
 
 #Check if device is online
-sudo wget  -q --spider http://google.com
 count=1
+wget  -q --spider http://google.com
 while [ $? -ne 0 ] && [ $count -lt 5 ]
 do
 	((count++))
 	sleep 5
-	sudo wget --tries=10 -q --spider http://google.com
+	wget --tries=10 -q --spider http://google.com
 	
 done
 
@@ -62,19 +61,20 @@ then
 
 
 	oldIp=`cat $workingDir/ip`
-	newIp=`wget ipinfo.io/ip -O - -q`
-	COMMAND="ssh -N -o ExitOnForwardFailure=yes -R $freePort:localhost:22 $managerURL"
-	
-	pgrep -f -x "$COMMAND"
-	if [ $? -ne 0 ] || [ "$newIp" != "$oldIp" ]
+	newIp=`wget http://ipinfo.io/ip -O - -q`
+	freePort=`cat $workingDir/port`
+	COMMAND="ssh -i /root/.ssh/id_rsa -N -R ${freePort}:localhost:22 ${managerURL}"
+	pgrep -x "ssh"
+	if [ $? -ne 0 ] || [ ${newIp} != ${oldIp} ]
 	then
+		echo "Establishing"
 		echo "$newIp" > $workingDir/ip
 		msg='{"ip":"'$newIp'","mac":"'$mac'","username":"'$uname'"}'
 		freePort=`curl -k -s --header 'content-type: application/json' -H 'username: admin' -H 'password: admin' -X  POST  -d $msg $apiURL  | jq -r '.port'`
 		if [ ! -z $freePort ]
 		then
 			echo "$freePort" > $workingDir/port
-			pkill -f "ssh -N -o ExitOnForwardFailure=yes -R"
+			pkill -f "ssh -i /root/.ssh/id_rsa -N -R"
 			establish_ssh
 			if [ $? -eq 0 ]
 			then
@@ -95,7 +95,7 @@ then
 			exit 0
 		else
 			echo "PROCESS EXISTS BUT SSH NOT ESTABLISHED"
-			pkill -f "ssh -N -o ExitOnForwardFailure=yes -R"
+			pkill -f "ssh -i /root/.ssh/id_rsa -N -R"
 			establish_ssh
 			if [ $? -eq 0 ]
 			then 

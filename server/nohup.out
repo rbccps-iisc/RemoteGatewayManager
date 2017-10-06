@@ -1,17 +1,28 @@
-2017/09/30 23:22:35 Loading config file at: /home/thepro/.gotty
-2017/09/30 23:22:35 GoTTY is starting with command: tmux new-session -d -s launch ssh manager@139.59.88.117
-2017/09/30 23:22:35 Permitting clients to write input to the PTY.
-2017/09/30 23:22:35 HTTP server is listening at: http://:::8080/
-2017/09/30 23:22:35 Alternative URL: http://127.0.0.1:8080/
-2017/09/30 23:22:35 Alternative URL: http://::1:8080/
-2017/09/30 23:22:35 Alternative URL: http://192.168.1.3:8080/
-2017/09/30 23:22:35 Alternative URL: http://fe80::6e89:4c7b:c736:87ab:8080/
-2017/09/30 23:22:41 127.0.0.1:39268 200 GET /
-2017/09/30 23:22:41 127.0.0.1:39274 200 GET /auth_token.js
-2017/09/30 23:22:41 127.0.0.1:39276 200 GET /config.js
-2017/09/30 23:22:41 127.0.0.1:39268 200 GET /css/index.css
-2017/09/30 23:22:41 127.0.0.1:39272 200 GET /css/xterm_customize.css
-2017/09/30 23:22:41 127.0.0.1:39270 200 GET /css/xterm.css
-2017/09/30 23:22:41 127.0.0.1:39278 200 GET /js/gotty-bundle.js
-2017/09/30 23:22:41 New client connected: 127.0.0.1:39280, connections: 1/0
-2017/09/30 23:22:41 Connection closed by local command: 127.0.0.1:39280, connections: 0/0
+2017/10/06 04:50:11 Loading config file at: /home/manager/.gotty
+2017/10/06 04:50:11 GoTTY is starting with command: tmux new-session -A -s 36897 ssh root@localhost -p 36897
+2017/10/06 04:50:11 Using Basic Authentication
+2017/10/06 04:50:11 Permitting clients to write input to the PTY.
+2017/10/06 04:50:11 HTTP server is listening at: https://:::9741/
+2017/10/06 04:50:11 Alternative URL: https://127.0.0.1:9741/
+2017/10/06 04:50:11 Alternative URL: https://::1:9741/
+2017/10/06 04:50:11 Alternative URL: https://139.59.88.117:9741/
+2017/10/06 04:50:11 Alternative URL: https://10.47.0.5:9741/
+2017/10/06 04:50:11 Alternative URL: https://fe80::95:81ff:fe7a:e3b:9741/
+2017/10/06 04:50:11 TLS crt file: /home/manager/.gotty.crt
+2017/10/06 04:50:11 TLS key file: /home/manager/.gotty.key
+2017/10/06 04:50:11 Basic Authentication Succeeded: 14.139.128.17:53606
+2017/10/06 04:50:11 14.139.128.17:53606 200 GET /
+2017/10/06 04:50:11 Basic Authentication Succeeded: 14.139.128.17:53606
+2017/10/06 04:50:11 14.139.128.17:53606 200 GET /css/index.css
+2017/10/06 04:50:11 Basic Authentication Succeeded: 14.139.128.17:53606
+2017/10/06 04:50:11 Basic Authentication Succeeded: 14.139.128.17:53606
+2017/10/06 04:50:11 14.139.128.17:53606 200 GET /css/xterm_customize.css
+2017/10/06 04:50:11 Basic Authentication Succeeded: 14.139.128.17:53606
+2017/10/06 04:50:11 14.139.128.17:53606 200 GET /auth_token.js
+2017/10/06 04:50:11 14.139.128.17:53606 200 GET /css/xterm.css
+2017/10/06 04:50:11 Basic Authentication Succeeded: 14.139.128.17:53606
+2017/10/06 04:50:11 14.139.128.17:53606 200 GET /config.js
+2017/10/06 04:50:11 Basic Authentication Succeeded: 14.139.128.17:53606
+2017/10/06 04:50:11 14.139.128.17:53606 200 GET /js/gotty-bundle.js
+2017/10/06 04:50:11 New client connected: 14.139.128.17:53610, connections: 1/0
+2017/10/06 04:50:12 Connection closed by local command: 14.139.128.17:53610, connections: 0/0

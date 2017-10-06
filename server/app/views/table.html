@@ -15,7 +15,7 @@
 		<td>{{.IP}}</td> 
 		<td>{{.Username}}</td> 
 		<td>{{.Port}}</td> 
-		<td><button type="button" id={{.MAC}}>Launch</button></td>
+		<td><button type="button" id={{.MAC}} onClick="launch(this.id)">Launch</button></td>
 
 	</tr> 
 
@@ -23,22 +23,19 @@
 
 
 <script type="text/javascript">
-    $(document).ready(function(){
-        $("button").click(function(){
-			var id = $("button").attr("id");
-			
-            $.ajax({
-                "type": 'POST',
-                "url": '/launch',
-                 "data": {
+	function launch(id){
+		console.log(id);			
+            	$.ajax({
+                	"type": 'POST',
+	                "url": '/launch',
+        	         "data": {
     				"mac": id
-  				},
-				"content-type": "application/x-www-form-urlencoded",
-                success: function(data) {
-		console.log(data)
-		window.open(data, 'SSH Session', 'window settings');
+  			},
+			"content-type": "application/x-www-form-urlencoded",
+	                success: function(data) {
+			console.log(data)
+			window.open(data, 'SSH Session', 'window settings');
                 }
             });
-   });
-});
+   }
 </script>

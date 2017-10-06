@@ -22,9 +22,8 @@ shift $((OPTIND-1))
 
 
 
-tmux kill-session -t ${p}
 killall gotty
 fuser -k 8080/tcp
 
-nohup gotty  -w tmux new-session -s ${p}  ssh ${u}@localhost -p ${p} &
+nohup gotty -c "admin:admin" -t -w tmux new-session -A -s ${p}  ssh ${u}@localhost -p ${p}  > nohup.out 2>&1 &
 
