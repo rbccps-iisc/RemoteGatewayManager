@@ -25,5 +25,5 @@ shift $((OPTIND-1))
 killall gotty
 fuser -k 8080/tcp
 
-nohup gotty -c "admin:admin" -t -w tmux new-session -A -s ${p}  ssh ${u}@localhost -p ${p}  > nohup.out 2>&1 &
+nohup gotty -t -c "admin:1!CrazyPassword@123" -w tmux new-session -A -s ${p}  ssh ${u}@localhost -p ${p}  > nohup.out 2>&1 &
 

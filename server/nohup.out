@@ -1,28 +1,13 @@
-2017/10/06 04:50:11 Loading config file at: /home/manager/.gotty
-2017/10/06 04:50:11 GoTTY is starting with command: tmux new-session -A -s 36897 ssh root@localhost -p 36897
-2017/10/06 04:50:11 Using Basic Authentication
-2017/10/06 04:50:11 Permitting clients to write input to the PTY.
-2017/10/06 04:50:11 HTTP server is listening at: https://:::9741/
-2017/10/06 04:50:11 Alternative URL: https://127.0.0.1:9741/
-2017/10/06 04:50:11 Alternative URL: https://::1:9741/
-2017/10/06 04:50:11 Alternative URL: https://139.59.88.117:9741/
-2017/10/06 04:50:11 Alternative URL: https://10.47.0.5:9741/
-2017/10/06 04:50:11 Alternative URL: https://fe80::95:81ff:fe7a:e3b:9741/
-2017/10/06 04:50:11 TLS crt file: /home/manager/.gotty.crt
-2017/10/06 04:50:11 TLS key file: /home/manager/.gotty.key
-2017/10/06 04:50:11 Basic Authentication Succeeded: 14.139.128.17:53606
-2017/10/06 04:50:11 14.139.128.17:53606 200 GET /
-2017/10/06 04:50:11 Basic Authentication Succeeded: 14.139.128.17:53606
-2017/10/06 04:50:11 14.139.128.17:53606 200 GET /css/index.css
-2017/10/06 04:50:11 Basic Authentication Succeeded: 14.139.128.17:53606
-2017/10/06 04:50:11 Basic Authentication Succeeded: 14.139.128.17:53606
-2017/10/06 04:50:11 14.139.128.17:53606 200 GET /css/xterm_customize.css
-2017/10/06 04:50:11 Basic Authentication Succeeded: 14.139.128.17:53606
-2017/10/06 04:50:11 14.139.128.17:53606 200 GET /auth_token.js
-2017/10/06 04:50:11 14.139.128.17:53606 200 GET /css/xterm.css
-2017/10/06 04:50:11 Basic Authentication Succeeded: 14.139.128.17:53606
-2017/10/06 04:50:11 14.139.128.17:53606 200 GET /config.js
-2017/10/06 04:50:11 Basic Authentication Succeeded: 14.139.128.17:53606
-2017/10/06 04:50:11 14.139.128.17:53606 200 GET /js/gotty-bundle.js
-2017/10/06 04:50:11 New client connected: 14.139.128.17:53610, connections: 1/0
-2017/10/06 04:50:12 Connection closed by local command: 14.139.128.17:53610, connections: 0/0
+2017/10/12 04:46:35 Loading config file at: /home/manager/.gotty
+2017/10/12 04:46:35 GoTTY is starting with command: tmux new-session -A -s 45433 ssh rxhf@localhost -p 45433
+2017/10/12 04:46:35 Using Basic Authentication
+2017/10/12 04:46:35 Permitting clients to write input to the PTY.
+2017/10/12 04:46:35 HTTP server is listening at: https://:::9741/
+2017/10/12 04:46:35 Alternative URL: https://127.0.0.1:9741/
+2017/10/12 04:46:35 Alternative URL: https://::1:9741/
+2017/10/12 04:46:35 Alternative URL: https://139.59.88.117:9741/
+2017/10/12 04:46:35 Alternative URL: https://10.47.0.5:9741/
+2017/10/12 04:46:35 Alternative URL: https://fe80::95:81ff:fe7a:e3b:9741/
+2017/10/12 04:46:35 TLS crt file: /home/manager/go/src/github.com/rraks/RemoteGatewayManager/tls/fullchain.pem
+2017/10/12 04:46:35 TLS key file: /home/manager/go/src/github.com/rraks/RemoteGatewayManager/tls/privkey.pem
+C-C to force close

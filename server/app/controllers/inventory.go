@@ -92,5 +92,5 @@ func (c Inventory) Launch() revel.Result {
 		log.Fatal(err)
 		c.Flash.Error("Failed To Launch Session")
 	}
-	return c.RenderText("https://139.59.88.117:9741")
+	return c.RenderText("https://gateways.rbccps.org:9741")
 }

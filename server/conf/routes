@@ -8,11 +8,11 @@ module:testrunner
 
 
 GET     /gateways                               Inventory.Gateways
-GET		/										App.Login
-POST 	/register/								Inventory.Register
-POST 	/auth									App.Auth
-POST    /launch									Inventory.Launch
-
+GET	/				 	App.Login
+POST 	/register/				Inventory.Register
+POST 	/auth					App.Auth
+POST    /launch					Inventory.Launch
+GET 	/logout					App.Logout
 
 # Ignore favicon requests
 GET     /favicon.ico                            404

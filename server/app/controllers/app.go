@@ -42,5 +42,12 @@ func (c App) Auth() revel.Result {
 
 		return c.Redirect(App.Login)
 	}
+}
 
+func (c App) Logout() revel.Result {
+
+	delete(c.Session, "username")
+	delete(c.Session, "password")
+
+	return c.Redirect(App.Login)
 }

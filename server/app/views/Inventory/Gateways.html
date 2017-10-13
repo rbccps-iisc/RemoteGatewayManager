@@ -4,6 +4,7 @@
   <div class="container">
     <div class="row">
       <img src="/public/img/rbccps.png" width="70%" height="70%" align="middle" >
+      <button type="button" id="logout" onClick="logout()">Logout</button>
       <br>
       <h1>Gateways</h1>
       
@@ -23,3 +24,16 @@
 </div>
 
 {{template "footer.html" .}}
+
+
+<script type="text/javascript">
+	function logout(id){
+            	$.ajax({
+                	"type": 'GET',
+	                "url": '/logout',
+			success: function(){
+			window.location.href = '/';
+			}
+            });
+   }
+</script>
