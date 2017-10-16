@@ -1,0 +1,31 @@
+2017/10/16 05:58:50 Loading config file at: /home/manager/.gotty
+2017/10/16 05:58:50 GoTTY is starting with command: tmux new-session -A -s 35578 ssh pi@localhost -p 35578
+2017/10/16 05:58:50 Using Basic Authentication
+2017/10/16 05:58:50 Permitting clients to write input to the PTY.
+2017/10/16 05:58:50 HTTP server is listening at: https://:::9741/
+2017/10/16 05:58:50 Alternative URL: https://127.0.0.1:9741/
+2017/10/16 05:58:50 Alternative URL: https://::1:9741/
+2017/10/16 05:58:50 Alternative URL: https://139.59.88.117:9741/
+2017/10/16 05:58:50 Alternative URL: https://10.47.0.5:9741/
+2017/10/16 05:58:50 Alternative URL: https://fe80::95:81ff:fe7a:e3b:9741/
+2017/10/16 05:58:50 TLS crt file: /home/manager/go/src/github.com/rraks/RemoteGatewayManager/tls/fullchain.pem
+2017/10/16 05:58:50 TLS key file: /home/manager/go/src/github.com/rraks/RemoteGatewayManager/tls/privkey.pem
+2017/10/16 05:58:50 14.139.128.17:44503 401 GET /
+2017/10/16 05:59:00 Basic Authentication Succeeded: 14.139.128.17:44503
+2017/10/16 05:59:00 14.139.128.17:44503 200 GET /
+2017/10/16 05:59:00 Basic Authentication Succeeded: 14.139.128.17:44503
+2017/10/16 05:59:00 Basic Authentication Succeeded: 14.139.128.17:44503
+2017/10/16 05:59:00 Basic Authentication Succeeded: 14.139.128.17:44503
+2017/10/16 05:59:00 Basic Authentication Succeeded: 14.139.128.17:44503
+2017/10/16 05:59:00 14.139.128.17:44503 200 GET /auth_token.js
+2017/10/16 05:59:00 14.139.128.17:44503 200 GET /css/index.css
+2017/10/16 05:59:00 14.139.128.17:44503 200 GET /css/xterm_customize.css
+2017/10/16 05:59:00 14.139.128.17:44503 200 GET /css/xterm.css
+2017/10/16 05:59:00 Basic Authentication Succeeded: 14.139.128.17:44503
+2017/10/16 05:59:00 14.139.128.17:44503 200 GET /config.js
+2017/10/16 05:59:00 Basic Authentication Succeeded: 14.139.128.17:44503
+2017/10/16 05:59:00 14.139.128.17:44503 200 GET /js/gotty-bundle.js
+2017/10/16 05:59:01 Basic Authentication Succeeded: 14.139.128.17:44503
+2017/10/16 05:59:01 14.139.128.17:44503 200 GET /favicon.png
+2017/10/16 05:59:01 New client connected: 14.139.128.17:44504, connections: 1/0
+2017/10/16 05:59:46 Connection closed by local command: 14.139.128.17:44504, connections: 0/0

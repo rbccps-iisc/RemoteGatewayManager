@@ -1,0 +1,4 @@
+ERROR 2017/10/13 13:33:09 Failed to listen: open ../tls/fullchain.pem: no such file or directory
+ERROR 2017/10/13 13:33:09 Error running: exit status 1
+ERROR 2017/10/13 13:33:14 Failed to listen: open ../tls/fullchain.pem: no such file or directory
+ERROR 2017/10/13 13:33:14 Error running: exit status 1
